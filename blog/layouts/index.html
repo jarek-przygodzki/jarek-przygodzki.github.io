@@ -1,0 +1,17 @@
+{{ partial "header" . }}
+
+<main>
+
+    <div class="intro">
+
+        {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
+
+        <h1>Jarek Przygódzki</h1>
+
+        <h2>Software Architect & Craftsman</h2>
+
+    </div>
+
+</main>
+
+{{ partial "footer" . }}
