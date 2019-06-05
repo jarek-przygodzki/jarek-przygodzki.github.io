@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenJDK on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/openjdk/</link>
+    <description>Recent content in OpenJDK on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/openjdk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>On why and how to exit JVM on OnOutOfMemoryError </title>
+      <link>https://jarek-przygodzki.github.io/post/on-why-and-how-exit-jvm-on-onoutofmemoryerror/</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/on-why-and-how-exit-jvm-on-onoutofmemoryerror/</guid>
+      <description>For a long time all my JVM-based Docker images were configured to exit on OOM error with -XX:OnOutOfMemoryError=”kill -9 %p” (%p is the current JVM process PID placeholder). It works well with XX:+HeapDumpOnOutOfMemoryError, because JVM will dump heap first, and then execute OnOutOfMemoryError command (see the relevant code in vm/utilities/debug.cpp). But with version 8u92 there’s now a JVM option in the JDK to make the JVM exit when an OutOfMemoryError occurs:</description>
+    </item>
+    
+  </channel>
+</rss>

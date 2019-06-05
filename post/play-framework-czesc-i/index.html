@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Play! Framework – część I</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Play! Framework – część I</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/play-framework-czesc-i/">Play! Framework – część I</a></h4>
+    <h5>July 12, 2016</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/playframework"><kbd class="item-tag">PlayFramework</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<p>Z związku z moim zainteresowaniem Scalą i Akką naturalnym jest zajęcie się ostatnim elementem stosu reaktywnych technologii dla JVM od Typesafe – frameworkiem Play. Niniejszy wpis stanowi, mam nadzieję, pierwszy z serii wpisów opisujących moją przygodę z tym frameworkiem.</p>
+
+<h2 id="czym-jest-play">Czym jest Play?</h2>
+
+<p>Play jest moim zdaniem najlepszym frameworkiem ogólnego przeznaczenia dla JVM
+Ogólnie rzeczy ujmując Play to implementacja wzorca MVC w oparciu o model aktów Akka połączona ze środowiskiem do zarządzania projektem i uruchamiania go</p>
+
+<h2 id="co-w-nim-tak-bardzo-mi-się-podoba">Co w nim tak bardzo mi się podoba?</h2>
+
+<p>Jednym z głównych filarów architektonicznych Play jest podejście bezstanowe i asynchroniczne.  W Play nie ma tradycyjnej „sesji”. Takie podejście nastręcza czasami pewne trudności, ale są one z nawiązką rekompensowane przez zalety takie jak łatwość horyzontalnego skalowania i wsparcie dla technologi reaktywnych. I Scala. Uwielbiam Scalę.</p>
+
+<h2 id="zacznijmy-jednak-od-podstaw">Zacznijmy jednak od podstaw</h2>
+
+<p>Szkielet aplikacji Play można łatwo wygenerować za pomocą narzędzia Typesafe Activator  – <code>activator new [name] [template-id]</code> – ale nie jest dobry sposób na rozpoczęcie przygody z Play.</p>
+
+<pre><code>activator new my-play-app play-scala
+</code></pre>
+
+<p>Zacznijmy więc od minimalnej aplikacji Play do której będziemy dodawać kolejne elementy w miarę potrzeby. Minimalna aplikacja jest naprawdę niewielka i składa się z czterech plików z których jeden (application.conf) jest pusty a jeden (build.properties) tak naprawdę  opcjonalny.</p>
+
+<pre><code>$ ls -R
+.:
+build.properties build.sbt conf/ project/
+ 
+./conf:
+application.conf
+ 
+./project:
+plugins.sbt
+</code></pre>
+
+<p>build.sbt</p>
+
+<pre><code>name := &quot;&quot;&quot;my-play-app&quot;&quot;&quot;
+ 
+version := &quot;1.0-SNAPSHOT&quot;
+ 
+lazy val root = (project in file(&quot;.&quot;)).enablePlugins(PlayScala)
+ 
+scalaVersion := &quot;2.11.7&quot;
+ 
+resolvers += &quot;scalaz-bintray&quot; at &quot;http://dl.bintray.com/scalaz/releases&quot;
+````
+project/plugins.sbt
+</code></pre>
+
+<p>// The Play plugin
+addSbtPlugin(&ldquo;com.typesafe.play&rdquo; % &ldquo;sbt-plugin&rdquo; % &ldquo;2.5.4&rdquo;)</p>
+
+<pre><code>project/build.properties
+</code></pre>
+
+<p>sbt.version=0.13.11</p>
+
+<pre><code>Nie jest to co prawda zbyt przydatna aplikacja – ale kompiluje się i uruchamia bez przeszkód o czym możemy się przekonać wydając polecenie `activator ~run` w katalogu aplikacji.
+
+Skrypt wykonujący poszczególne krotki jest dostępny jako [Gist](https://gist.github.com/jarek-przygodzki/ce8e8777df8a72b8e07ef3fd173563c1)
+</code></pre>
+
+<p>bash &lt;(curl -fsSL <a href="https://git.io/vKW88">https://git.io/vKW88</a>) my-play-app
+```</p>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/single-file-play-framework-application-with-ammonite/">Single-file Play Framework application with Ammonite</a></h4>
+    <h5>September 18, 2016</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/scala"><kbd class="item-tag">Scala</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/playframework"><kbd class="item-tag">PlayFramework</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jvm"><kbd class="item-tag">JVM</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

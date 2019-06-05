@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Publishing a port from a running Docker container</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Publishing a port from a running Docker container</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/publishing-a-port-from-a-running-docker-container/">Publishing a port from a running Docker container</a></h4>
+    <h5>April 8, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<p>It’s not obvious, but it’s possible to publish an additional port from a running Docker container.</p>
+
+<p>Note: Assuming container is attached to user-defined bridge network or default bridge network. Publishing ports doesn’t make sense with <a href="https://docs.docker.com/network/macvlan/">MacVLAN or IPVLAN</a> since then every container has a uniquely routable IP address and can offer service on any port.</p>
+
+<h2 id="what-can-we-do-to-make-container-port-externally-accessible">What can we do to make container port externally accessible?</h2>
+
+<p>One possibile solution is to exploit the fact that communication between containers inside the same bridge network is switched at layer 2 and they can communiate with each other without any restrictions (unless ICC is disabled, that is). That means when can run another container with socat inside target network with published port and setup forwarding</p>
+
+<pre><code>docker run --rm -it \
+    --net=[TARGET_NETWORK]
+    -p [PORT]:[PORT] \
+    bobrik/socat TCP-LISTEN:[PORT],fork TCP:[CONTAINER_IP]:[CONTAINER_PORT]
+</code></pre>
+
+<p>What else can we do do? It’s not immediately obvious, but each bridge network is reachable from the host. We can verify with <code>ip route show</code> that in host’s routing table exists routing table entry for each bridge network</p>
+
+<pre><code>$ ip route show
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 
+172.18.0.0/16 dev br-b4247d00e80c proto kernel scope link src 172.18.0.1
+172.19.0.0/16 dev br-acd7d3307ea3 proto kernel scope link src 172.19.0.1
+</code></pre>
+
+<p>That means we can as well setup socat relay in host network namespace</p>
+
+<pre><code>docker run --rm -it \
+    --net=host \
+    -p [PORT]:[PORT] \
+    bobrik/socat TCP-LISTEN:[PORT],fork TCP:[CONTAINER_IP]:[CONTAINER_PORT]
+</code></pre>
+
+<p>or just run socat directly on host</p>
+
+<pre><code>socat TCP-LISTEN:[PORT],fork TCP:[CONTAINER_IP]:[CONTAINER_PORT]
+</code></pre>
+
+<p>But we can still do better! We can replace socat relay with iptables DNAT. For inbound traffic, we’ll need to create a custom rule that uses Network Address Translation (NAT) to map a port on the host to the service port in the container. We can do that with a rule like this:</p>
+
+<pre><code># must be added into DOCKER chain
+ iptables -t nat -A DOCKER -p tcp -m tcp \
+    --dport [PORT] -j DNAT \
+    --to-destination [CONTAINER_IP]:[CONTAINER_PORT]
+</code></pre>
+
+<p>This is pretty much how Docker publishes ports from containers using the bridged network when option <code>-publish|-p</code> is used with docker run. The only difference is that DNAT rule created by Docker is restricted not to affect traffic originating from bridge</p>
+
+<pre><code>iptables -t nat -A DOCKER ! -i [BRIDGE_NAME] -p tcp -m tcp \
+   --dport [PORT] -j DNAT \
+   --to-destination [CONTAINER_IP]:[CONTAINER_PORT]
+</code></pre>
+
+<p>The DOCKER chain is a custom chain defined at the FORWARD chain. When a packet hits any interface and is bound to the one of bridge interfaces, it is sent to the custom DOCKER chain. Now the DOCKER chain will take all incoming packets, except ones coming from bridge (say docker0 for default network), and send them to a container IP (usually 172.x.x.x) and port.</p>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/">Install Ca Certificate for Docker Registry on Local Boot2docker Vm</a></h4>
+    <h5>May 23, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/boot2docker"><kbd class="item-tag">Boot2Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/ca"><kbd class="item-tag">CA</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/">Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</a></h4>
+    <h5>March 12, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/">Running Linux graphical applications in Docker on Windows with Cygwin/X</a></h4>
+    <h5>July 11, 2017</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/windows"><kbd class="item-tag">Windows</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/cygwin/x"><kbd class="item-tag">CYGWIN/X</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

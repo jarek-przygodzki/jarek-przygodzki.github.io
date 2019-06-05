@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Boot2Docker on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/boot2docker/</link>
+    <description>Recent content in Boot2Docker on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/boot2docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Install Ca Certificate for Docker Registry on Local Boot2docker Vm</title>
+      <link>https://jarek-przygodzki.github.io/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/</guid>
+      <description>Annoyingly often internal Docker registries are secured with certificates signed by company&amp;rsquo;s own PKI or enterprise IT does a MitM to replace all HTTPS certs.
+Commonly, company&amp;rsquo;s root CA certificate is installed by IT on developers machines and servers, but not on VMs run by developers on their own machines. When using Docker with local VMs like boot2docker, do we need to install the company root CA certificate on the VM to avoid x509: certificate signed by unknown authority errors.</description>
+    </item>
+    
+  </channel>
+</rss>

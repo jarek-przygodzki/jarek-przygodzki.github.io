@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Running Linux graphical applications in Docker on Windows with Cygwin/X</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Running Linux graphical applications in Docker on Windows with Cygwin/X</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/">Running Linux graphical applications in Docker on Windows with Cygwin/X</a></h4>
+    <h5>July 11, 2017</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/windows"><kbd class="item-tag">Windows</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/cygwin/x"><kbd class="item-tag">CYGWIN/X</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<h2 id="install-babun">Install Babun</h2>
+
+<p><a href="https://www.cygwin.com/">Cygwin</a> is a great tool, but not the easiest to install. Babun consists of a pre-configured Cygwin  that does not interfere with existing Cygwin installation.</p>
+
+<p>Download the dist file from <a href="http://babun.github.io/">http://babun.github.io</a>, unzip it and run the install.bat script. After a few minutes the application will be installed to the <code>%USERPROFILE%\.babun</code> directory. You can use the /target (or /t)  option to install babun to a custom directory.</p>
+
+<h2 id="install-cygwin-x">Install Cygwin/X</h2>
+
+<p>Run pact from babun shell (pact is a babun package manager )</p>
+
+<pre><code>pact install xorg-server xinit xhost
+</code></pre>
+
+<h2 id="start-the-x-server">Start the X server</h2>
+
+<p>Once the installation has completed, open a Cygwin terminal and run <code>XWin :0 -listen tcp -multiwindow</code>. This will start an X server on Windows machine
+with the ability to listen to connections from the network (<code>-listen tcp</code>) and display each application in its own window (<code>-multiwindow</code>), rather than a single window acting as a virtual screen to display applications on. Once it’s started, you should see an „X” icon in Windows tray area.</p>
+
+<h2 id="run-graphical-application">Run graphical application</h2>
+
+<p><a href="https://github.com/fr3nd/docker-xeyes">fr3nd/xeyes</a>  is a good test to run</p>
+
+<pre><code>// don't forget to change WINDOWS_MACHINE_IP_ADDR!
+// 'localhost' obviously won't work from within Docker container
+docker run -e DISPLAY=$WINDOWS_MACHINE_IP_ADDR:0 --rm fr3nd/xeyes
+</code></pre>
+
+<p>Or we can build ourselves image with Firefox using the following Dockerfile as a starting point</p>
+
+<pre><code>FROM centos
+ 
+RUN yum -y update &amp;&amp; yum install -y firefox
+ 
+CMD /usr/bin/firefox
+</code></pre>
+
+<p><code>docker build -t firefox</code> . it and run the container with</p>
+
+<pre><code>export DISPLAY=$WINDOWS_MACHINE_IP_ADD:0
+docker run -ti --rm -e DISPLAY=$DISPLAY firefox
+</code></pre>
+
+<p>If all goes well you should see Firefox running from within a Docker container.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>If you have issues with authorization you may want to try running the insecure <code>xhost + command</code> to permit access from all machines. See <a href="http://linux.die.net/man/1/xhost">xhost(1) Linux man page</a>.</p>
+
+<h2 id="alternatives">Alternatives</h2>
+
+<p>There are a few different options to run GUI applications inside a Docker container like using <a href="https://blog.docker.com/2013/07/docker-desktop-your-desktop-over-ssh-running-inside-of-a-docker-container/">SSH with X11 forwarding</a> or <a href="http://stackoverflow.com/questions/16296753/can-you-run-gui-apps-in-a-docker-container/16311264#16311264">VNC</a>.</p>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/">Install Ca Certificate for Docker Registry on Local Boot2docker Vm</a></h4>
+    <h5>May 23, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/boot2docker"><kbd class="item-tag">Boot2Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/ca"><kbd class="item-tag">CA</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/publishing-a-port-from-a-running-docker-container/">Publishing a port from a running Docker container</a></h4>
+    <h5>April 8, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/">Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</a></h4>
+    <h5>March 12, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

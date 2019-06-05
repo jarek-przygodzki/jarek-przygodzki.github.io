@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PlayFramework on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/playframework/</link>
+    <description>Recent content in PlayFramework on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/playframework/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Single-file Play Framework application with Ammonite</title>
+      <link>https://jarek-przygodzki.github.io/post/single-file-play-framework-application-with-ammonite/</link>
+      <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/single-file-play-framework-application-with-ammonite/</guid>
+      <description>Single-file Play Framework application with Ammonite courtesy of Li Haoyi ‏@li_haoyi
+/** * Single-file play framework application! Make sure everything * works, as this is the test case that un-earthed #371 */ load.ivy(&amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play&amp;quot; % &amp;quot;2.5.0&amp;quot;) load.ivy(&amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play-netty-server&amp;quot; % &amp;quot;2.5.0&amp;quot;) load.ivy(&amp;quot;org.scalaj&amp;quot; %% &amp;quot;scalaj-http&amp;quot; % &amp;quot;2.2.1&amp;quot;) @ import play.core.server._, play.api.routing.sird._, play.api.mvc._ import scalaj.http._ val server = NettyServer.fromRouter(new ServerConfig( rootDir = new java.io.File(&amp;quot;.&amp;quot;), port = Some(19000), sslPort = None, address = &amp;quot;0.</description>
+    </item>
+    
+    <item>
+      <title>Play! Framework – część I</title>
+      <link>https://jarek-przygodzki.github.io/post/play-framework-czesc-i/</link>
+      <pubDate>Tue, 12 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/play-framework-czesc-i/</guid>
+      <description>Z związku z moim zainteresowaniem Scalą i Akką naturalnym jest zajęcie się ostatnim elementem stosu reaktywnych technologii dla JVM od Typesafe – frameworkiem Play. Niniejszy wpis stanowi, mam nadzieję, pierwszy z serii wpisów opisujących moją przygodę z tym frameworkiem.
+Czym jest Play? Play jest moim zdaniem najlepszym frameworkiem ogólnego przeznaczenia dla JVM Ogólnie rzeczy ujmując Play to implementacja wzorca MVC w oparciu o model aktów Akka połączona ze środowiskiem do zarządzania projektem i uruchamiania go</description>
+    </item>
+    
+  </channel>
+</rss>

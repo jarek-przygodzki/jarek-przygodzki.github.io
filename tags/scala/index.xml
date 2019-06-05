@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/scala/</link>
+    <description>Recent content in Scala on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/scala/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Single-file Play Framework application with Ammonite</title>
+      <link>https://jarek-przygodzki.github.io/post/single-file-play-framework-application-with-ammonite/</link>
+      <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/single-file-play-framework-application-with-ammonite/</guid>
+      <description>Single-file Play Framework application with Ammonite courtesy of Li Haoyi ‏@li_haoyi
+/** * Single-file play framework application! Make sure everything * works, as this is the test case that un-earthed #371 */ load.ivy(&amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play&amp;quot; % &amp;quot;2.5.0&amp;quot;) load.ivy(&amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play-netty-server&amp;quot; % &amp;quot;2.5.0&amp;quot;) load.ivy(&amp;quot;org.scalaj&amp;quot; %% &amp;quot;scalaj-http&amp;quot; % &amp;quot;2.2.1&amp;quot;) @ import play.core.server._, play.api.routing.sird._, play.api.mvc._ import scalaj.http._ val server = NettyServer.fromRouter(new ServerConfig( rootDir = new java.io.File(&amp;quot;.&amp;quot;), port = Some(19000), sslPort = None, address = &amp;quot;0.</description>
+    </item>
+    
+    <item>
+      <title>Scala partial function literal</title>
+      <link>https://jarek-przygodzki.github.io/post/scala-partial-function-literal/</link>
+      <pubDate>Mon, 27 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/scala-partial-function-literal/</guid>
+      <description>In Scala there’s no literal for partial function types. You have to give the exact signature of the PartialFunction
+val pf: PartialFunction[Double, Double] = { case x if x &amp;gt;= 0 =&amp;gt; Math.sqrt(x) }  Though I personally prefer to use type ascription bacause you can define and lift in the same place if needed.
+val pf = { case x if x &amp;gt;= 0 =&amp;gt; Math.sqrt(x) } : PartialFunction[Double, Double]  It’s unwieldy, but I’ve learned to live with it.</description>
+    </item>
+    
+    <item>
+      <title>My favorite features of Scala – part I</title>
+      <link>https://jarek-przygodzki.github.io/post/my-favorite-features-of-scala-part-i/</link>
+      <pubDate>Wed, 29 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/my-favorite-features-of-scala-part-i/</guid>
+      <description>During the last few months I’ve spent substantial amount of free time learning Scala and consider it time well spent. This article is first part describing my favorite features of Scala
+Extractor Objects Whenever you define a val or var, what comes after the keyword is not simply an identifier but rather a pattern.
+val regex = &amp;quot;(\\d+)/(\\d+)/(\\d+)&amp;quot;.r val regex(year, month, day) = &amp;quot;2015/7/29&amp;quot;  The val regex is an instance of Regex, and when you use it in a pattern, you’re implicitly calling regex.</description>
+    </item>
+    
+  </channel>
+</rss>

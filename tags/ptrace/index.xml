@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ptrace on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/ptrace/</link>
+    <description>Recent content in ptrace on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/ptrace/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JVM in Docker and PTRACE_ATTACH</title>
+      <link>https://jarek-przygodzki.github.io/post/jvm-in-docker-and-ptrace_attach/</link>
+      <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/jvm-in-docker-and-ptrace_attach/</guid>
+      <description>Docker nowadays (since 1.10, the original pull request is here docker/docker/#17989) adds some security to running containers by wrapping them in both AppArmor (or presumably SELinux on RedHat systems) and seccomp eBPF based syscall filters (here’s a nice article about it). And ptrace is disabled in the default seccomp profile.
+$ docker run alpine sh -c &#39;apk add -U strace &amp;amp;&amp;amp; strace echo&#39; fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/main/x86_64/APKINDEX.tar.gz fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/community/x86_64/APKINDEX.tar.gz (1/1) Installing strace (4.</description>
+    </item>
+    
+  </channel>
+</rss>

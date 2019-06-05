@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ECJ – Eclipse Compiler for Java</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">ECJ – Eclipse Compiler for Java</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/ecj-eclipse-compiler-for-java/">ECJ – Eclipse Compiler for Java</a></h4>
+    <h5>December 17, 2012</h5>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<p>Nie wszyscy o tym wiedzą, ale Eclipse dostarcza i używa własnego kompilatora Javy – ECJ – zamiast standardowego <a href="http://docs.oracle.com/javase/6/docs/technotes/guides/javac/index.html">javac</a>. Kompilator umieszczony jest w plug-inie <a href="http://www.eclipse.org/projects/project.php?id=eclipse.jdt.core">JDT Core</a> i dostępny zarówno jako cześć <strong>Eclipse IDE for Java Developers</strong> jak i jako samodzielna aplikacja  do wykorzystania zarówno z linii poleceń jak i programistycznego. Dlaczego ECJ jest tak interesujący? Jak pisze <a href="https://www.ibm.com/developerworks/mydeveloperworks/blogs/Wayner/entry/did_you_know_that_eclipse?lang=en">Wayner</a>
+&gt; It does wonderful things. My personal favourite thing about the Eclipse Java compiler is the fact that it will compile code that contains errors. That is, when you compile code that has errors in it, the compiler will flag those errors for you and then generate the .class file anyway. You can actually run and debug the code and, should the runtime actually run into your errors, it will then throw an exception.</p>
+
+<h2 id="użycie-z-wiersza-poleceń">Użycie z wiersza poleceń</h2>
+
+<p>Jest  bardzo proste – po wpisaniu</p>
+
+<pre><code>java -jar /apps/ecj-4.2.1.jar
+</code></pre>
+
+<p>uzyskujemy niezbędną pomoc. Przkładowo, klasę <code>MyApp</code>.java można skompilować następujaco</p>
+
+<pre><code>java -jar /apps/ecj-4.2.1.jar MyApp.java
+</code></pre>
+
+<p>Znacznie ciekawsze jest</p>
+
+<h2 id="wykorzystanie-programistyczne">Wykorzystanie programistyczne</h2>
+
+<pre><code>def ecjJar = '/apps/ecj-4.2.1.jar' as File
+def loader = this.class.classLoader.rootLoader
+loader.addURL(ecjJar.toURI().toURL())
+ 
+ 
+def commandLine = '-classpath rt.jar MyApp.java'
+ 
+org.eclipse.jdt.internal.compiler.batch.Main.compile(
+    commandLine, 
+    new PrintWriter(System.out), 
+    new PrintWriter(System.err))
+</code></pre>
+
+<p>Oczywiście, jest to tylko <a href="http://help.eclipse.org/indigo/index.jsp?topic=/org.eclipse.jdt.doc.isv/guide/jdt_api_compile.htm">wierzchołek góry lodowej</a> możliwości ECJ który oferuje dużo więcej niż standardowy kompilator z JDK, np. <a href="http://help.eclipse.org/indigo/topic/org.eclipse.jdt.doc.isv/guide/jdt_api_search.htm">wyszukiwanie w kodzie źródłowym</a>.</p>
+
+<p><a href="https://github.com/eclipse/eclipse.jdt.core">eclipse / eclipse.jdt.core on GitHub</a></p>
+</div>
+
+    
+    
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

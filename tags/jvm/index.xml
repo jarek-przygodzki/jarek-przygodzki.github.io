@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JVM on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/jvm/</link>
+    <description>Recent content in JVM on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Generating JVM memory dumps from JRE</title>
+      <link>https://jarek-przygodzki.github.io/post/generating-jvm-memory-dumps-from-jre/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/generating-jvm-memory-dumps-from-jre/</guid>
+      <description>Generating JVM memory dumps from JRE on Linux/Windows/OSX Generating a JVM heap memory dump with JDK is straightforward as almost every Java developer knows about jmap and jcmd tools that come with the JDK. But what about JRE?
+Some people think you need JDK, or at least part of it, but that&amp;rsquo;s not true. The answer lies in jattach, a tool to send commands to JVM via Dynamic Attach mechanism created by JVM hacker Andrei Pangin (@AndreiPangin).</description>
+    </item>
+    
+    <item>
+      <title>On why and how to exit JVM on OnOutOfMemoryError </title>
+      <link>https://jarek-przygodzki.github.io/post/on-why-and-how-exit-jvm-on-onoutofmemoryerror/</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/on-why-and-how-exit-jvm-on-onoutofmemoryerror/</guid>
+      <description>For a long time all my JVM-based Docker images were configured to exit on OOM error with -XX:OnOutOfMemoryError=”kill -9 %p” (%p is the current JVM process PID placeholder). It works well with XX:+HeapDumpOnOutOfMemoryError, because JVM will dump heap first, and then execute OnOutOfMemoryError command (see the relevant code in vm/utilities/debug.cpp). But with version 8u92 there’s now a JVM option in the JDK to make the JVM exit when an OutOfMemoryError occurs:</description>
+    </item>
+    
+    <item>
+      <title>JVM in Docker and PTRACE_ATTACH</title>
+      <link>https://jarek-przygodzki.github.io/post/jvm-in-docker-and-ptrace_attach/</link>
+      <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/jvm-in-docker-and-ptrace_attach/</guid>
+      <description>Docker nowadays (since 1.10, the original pull request is here docker/docker/#17989) adds some security to running containers by wrapping them in both AppArmor (or presumably SELinux on RedHat systems) and seccomp eBPF based syscall filters (here’s a nice article about it). And ptrace is disabled in the default seccomp profile.
+$ docker run alpine sh -c &#39;apk add -U strace &amp;amp;&amp;amp; strace echo&#39; fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/main/x86_64/APKINDEX.tar.gz fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/community/x86_64/APKINDEX.tar.gz (1/1) Installing strace (4.</description>
+    </item>
+    
+    <item>
+      <title>Single-file Play Framework application with Ammonite</title>
+      <link>https://jarek-przygodzki.github.io/post/single-file-play-framework-application-with-ammonite/</link>
+      <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/single-file-play-framework-application-with-ammonite/</guid>
+      <description>Single-file Play Framework application with Ammonite courtesy of Li Haoyi ‏@li_haoyi
+/** * Single-file play framework application! Make sure everything * works, as this is the test case that un-earthed #371 */ load.ivy(&amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play&amp;quot; % &amp;quot;2.5.0&amp;quot;) load.ivy(&amp;quot;com.typesafe.play&amp;quot; %% &amp;quot;play-netty-server&amp;quot; % &amp;quot;2.5.0&amp;quot;) load.ivy(&amp;quot;org.scalaj&amp;quot; %% &amp;quot;scalaj-http&amp;quot; % &amp;quot;2.2.1&amp;quot;) @ import play.core.server._, play.api.routing.sird._, play.api.mvc._ import scalaj.http._ val server = NettyServer.fromRouter(new ServerConfig( rootDir = new java.io.File(&amp;quot;.&amp;quot;), port = Some(19000), sslPort = None, address = &amp;quot;0.</description>
+    </item>
+    
+    <item>
+      <title>Kto wywołuje System.gc() ?</title>
+      <link>https://jarek-przygodzki.github.io/post/kto-wywoluje-system-gc/</link>
+      <pubDate>Thu, 25 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/post/kto-wywoluje-system-gc/</guid>
+      <description>Każdy, kto miał do czynienia z aplikacjami Javy których rozmiar sterty liczy się w gigabajtach wie, że jedną z rzeczy których należy unikać jak ognia jest tzw. odśmiecanie pełne (Full GC). W większości przypadków można to osiągnąć przez rozważny wybór algorytmu GC i staranne dobranie jego parametrów. Nie rozwiązuje to jednak przypadku, gdy cykl pełnego odśmiecania wyzwalany jest przez jawne wywołanie System.gc() co manifestuje się wpisami w logach procesu odśmiecania zaczynających się od Full GC (System) (HotSpot) lub &amp;lt;sys&amp;gt; (IBM J9).</description>
+    </item>
+    
+  </channel>
+</rss>

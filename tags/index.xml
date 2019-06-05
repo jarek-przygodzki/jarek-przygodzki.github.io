@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Jarek Przygódzki&#39;s Blog</title>
+    <link>https://jarek-przygodzki.github.io/tags/</link>
+    <description>Recent content in Tags on Jarek Przygódzki&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarek-przygodzki.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker</title>
+      <link>https://jarek-przygodzki.github.io/tags/docker/</link>
+      <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://jarek-przygodzki.github.io/tags/linux/</link>
+      <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devicemapper</title>
+      <link>https://jarek-przygodzki.github.io/tags/devicemapper/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/devicemapper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>overlay2</title>
+      <link>https://jarek-przygodzki.github.io/tags/overlay2/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/overlay2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JVM</title>
+      <link>https://jarek-przygodzki.github.io/tags/jvm/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/jvm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jattach</title>
+      <link>https://jarek-przygodzki.github.io/tags/jattach/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/jattach/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jre</title>
+      <link>https://jarek-przygodzki.github.io/tags/jre/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/jre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Boot2Docker</title>
+      <link>https://jarek-przygodzki.github.io/tags/boot2docker/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/boot2docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CA</title>
+      <link>https://jarek-przygodzki.github.io/tags/ca/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/ca/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://jarek-przygodzki.github.io/tags/devops/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenJDK</title>
+      <link>https://jarek-przygodzki.github.io/tags/openjdk/</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/openjdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CYGWIN/X</title>
+      <link>https://jarek-przygodzki.github.io/tags/cygwin/x/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/cygwin/x/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://jarek-przygodzki.github.io/tags/windows/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ptrace</title>
+      <link>https://jarek-przygodzki.github.io/tags/ptrace/</link>
+      <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/ptrace/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PlayFramework</title>
+      <link>https://jarek-przygodzki.github.io/tags/playframework/</link>
+      <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/playframework/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scala</title>
+      <link>https://jarek-przygodzki.github.io/tags/scala/</link>
+      <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/scala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vagrant</title>
+      <link>https://jarek-przygodzki.github.io/tags/vagrant/</link>
+      <pubDate>Tue, 21 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/vagrant/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BTrace</title>
+      <link>https://jarek-przygodzki.github.io/tags/btrace/</link>
+      <pubDate>Thu, 18 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarek-przygodzki.github.io/tags/btrace/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

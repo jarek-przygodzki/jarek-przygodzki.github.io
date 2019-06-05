@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Generating JVM memory dumps from JRE</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Generating JVM memory dumps from JRE</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/generating-jvm-memory-dumps-from-jre/">Generating JVM memory dumps from JRE</a></h4>
+    <h5>August 28, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jvm"><kbd class="item-tag">jvm</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jre"><kbd class="item-tag">jre</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jattach"><kbd class="item-tag">jattach</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<h1 id="generating-jvm-memory-dumps-from-jre-on-linux-windows-osx">Generating JVM memory dumps from JRE on Linux/Windows/OSX</h1>
+
+<p>Generating a JVM heap memory dump with JDK is straightforward as almost every Java developer knows about jmap and jcmd tools that come with the JDK. But what about JRE?</p>
+
+<p>Some people think you <a href="https://stackoverflow.com/questions/24213491/how-do-i-produce-a-heap-dump-with-only-a-jre">need JDK</a>, or at least <a href="https://medium.com/@chamilad/extracting-memory-and-thread-dumps-from-a-running-jre-based-jvm-26de1e37a080">part of it</a>, but that&rsquo;s not true. The answer lies in <a href="https://github.com/apangin/jattach">jattach</a>, a tool to send commands to JVM via Dynamic Attach mechanism created by JVM hacker Andrei Pangin (<a href="https://twitter.com/andreipangin">@AndreiPangin</a>). It&rsquo;s tiny (24KB), works with just JRE and supports Linux containers.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>Most of the time it comes down to downloading a single file</p>
+
+<pre><code>wget -L -O /usr/local/bin/jattach \
+    https://github.com/apangin/jattach/releases/download/v1.4/jattach &amp;&amp; \
+    chmod +x /usr/local/bin/jattach
+</code></pre>
+
+<p>We can then send <code>dumpheap</code> command do JVM process</p>
+
+<pre><code>jattach PID-OF-JAVA dumpheap &lt;path to heap dump file&gt;
+</code></pre>
+
+<p>e.g</p>
+
+<pre><code>java_pid=$(pidof -s java) &amp;&amp; \
+    jattach $java_pid dumpheap /tmp/java_pid$java_pid-$(date +%Y-%m-%d_%H-%M-%S).hprof
+</code></pre>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>Built-in JDK utilities like jmap and jstack have two execution modes: cooperative and forced. In normal cooperative mode these tools use Dynamic Attach Mechanism to connect to the target VM. The requested command is then executed by the target VM in it&rsquo;s own process. This mode is used by jattach.</p>
+
+<p>The forced mode (jmap -F, jstack -F) works differently. The tool suspends the target process and then reads the process memory using Serviceability Agent. See <a href="https://stackoverflow.com/questions/26140182/running-jmap-getting-unable-to-open-socket-file/35963059#35963059">this</a> for details.</p>
+
+<h2 id="docker">Docker</h2>
+
+<p>Prior to  Java 10 jmap, jstack and jcmd could not attach from a process on the host machine to a JVM running inside a Docker container because of how the attach mechanism interacts with pid and mount namespaces. Java 10 <a href="https://bugs.openjdk.java.net/browse/JDK-8179498">fixes this</a> by the JVM inside the container finding its PID in the root namespace and using this to watch for a JVM attachment.</p>
+
+<p>Jattach supports containers and is compatible with earlier versions of JVM - all we need is process id in host PID namespace. How can we get it?</p>
+
+<p>If JVM is the main process of a container (PID 1), the needed information is included in <code>docker inspect</code> output</p>
+
+<pre><code>cid=&lt;container name or id&gt;
+host_pid=$(docker inspect --format {{.State.Pid}} $cid)
+</code></pre>
+
+<p>If it&rsquo;s not? Then things become more interesting. The easiest way that I know of is to use /proc/PID/sched - kernel scheduling statistics.</p>
+
+<pre><code>cid=&lt;container name or id&gt;
+docker exec -it $cid bash -c 'cat /proc/$(pidof -s java)/sched'
+
+java (8251, #threads: 127)
+-------------------------------------------------------------------
+se.exec_start                                :        275669.207074
+se.vruntime                                  :            80.606203
+se.sum_exec_runtime                          :            57.897264
+nr_switches                                  :                  157
+nr_voluntary_switches                        :                  149
+nr_involuntary_switches                      :                    8
+se.load.weight                               :                 1024
+se.avg.load_sum                              :              8883079
+se.avg.util_sum                              :                 4424
+se.avg.load_avg                              :                  181
+se.avg.util_avg                              :                   90
+se.avg.last_update_time                      :         275669207074
+policy                                       :                    0
+prio                                         :                  120
+clock-delta                                  :                   52
+mm-&gt;numa_scan_seq                            :                    0
+numa_migrations, 0
+numa_faults_memory, 0, 0, 1, 0, -1
+numa_faults_memory, 1, 0, 0, 0, -1
+</code></pre>
+
+<p>For us interesting is the first line of the output (format defined in <a href="https://github.com/torvalds/linux/blob/v4.18/kernel/sched/debug.c#L877">kernel/sched/debug.c#L877</a>. Desired PID can be extract with a little bit of shell scripting</p>
+
+<pre><code>docker exec -it $cid sh -c 'head -1 /proc/$(pidof -s java)/sched | grep -P &quot;(?&lt;=\()\d+&quot; -o'
+</code></pre>
+
+<p>When target container is bare (no shell, no cat, no nothing), nsenter is a possible alternative to <code>docker exec</code></p>
+
+<pre><code>host_pid=$(docker inspect --format {{.State.Pid}} &lt;container name or id&gt;)
+nsenter --target $host_pid  --pid --mount  sh -c 'cat /proc/$(pidof -s java)/sched'
+</code></pre>
+
+<h2 id="what-can-go-wrong">What can go wrong?</h2>
+
+<p>Jattach from project&rsquo;s release page is linked against glibc so it <a href="https://wiki.alpinelinux.org/wiki/Running_glibc_programs">most likely</a> won&rsquo;t work on Alpine Linux. But it is not too hard to make it work.</p>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+      
+
+    <h4><a href="/post/why-is-my-docker-image-so-large/">Why is my Docker image so large?</a></h4>
+    <h5>Troubleshooting issues with Docker image size</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">linux</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+      
+
+    <h4><a href="/post/a-curious-case-of-slow-docker-image-builds/">A curious case of slow Docker image builds</a></h4>
+    <h5>Investigating slow Docker image builds</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devicemapper"><kbd class="item-tag">devicemapper</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/overlay2"><kbd class="item-tag">overlay2</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">linux</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

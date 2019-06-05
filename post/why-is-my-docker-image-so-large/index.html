@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Why is my Docker image so large?</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Why is my Docker image so large?</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+      
+
+    <h4><a href="/post/why-is-my-docker-image-so-large/">Why is my Docker image so large?</a></h4>
+    <h5>Troubleshooting issues with Docker image size</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">linux</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<p>Keeping Docker images as small as possible has a lot of practical benefits. But even when following best practices
+- use stripped-down base image
+- utilize multi-stage builds
+- don&rsquo;t install what you don&rsquo;t need
+- optimize build context
+- minimize number of layers</p>
+
+<p>some images end up being larger than they have to be inadvertently including files that are not necessary .</p>
+
+<h1 id="how-to-troubleshoot-issues-with-image-size">How to troubleshoot issues with image size?</h1>
+
+<p>Image filesystem changes are tracked in layers. Each layer is the the representation of the file system changes for each instruction in Dockerfile. Layers of a Docker image are essentially  files generated from running some command during <code>docker build</code> in ephemeral intermediate container.</p>
+
+<p>In the past, I used to perform <code>docker history &lt;image name&gt;</code> to view all the layers that make up the image, manually extract suspicious layers and inspect their content. It worked, but it was tedious.</p>
+
+<h1 id="dive">Dive</h1>
+
+<p><a href="https://github.com/wagoodman/dive">Dive</a> is a new tool for exploring a Docker images, inspecting layer contents and discovering ways to shrink your Docker image size - all that in a nice text-based user interface.</p>
+
+<p>I recently used it to diagnose an unexpected image size growth caused by change of  file ownership &amp; permissions. One of the instructions in <code>jboss/wildfly</code> based Dockerfile was <code>chown -R jboss:jboss /opt/jboss/wildfly/</code>. It looks innocent, but these files are originally owned by <em>jboos:root</em>. Docker doesn&rsquo;t know what changes have happened inside a layer, only which files are affected.  As such, this will cause Docker to create a new layer, replacing all those files (same content as <em>/opt/jboss/wildfly/</em> but with with new ownership), adding hundreds of megabytes to image size.</p>
+
+<h1 id="resources">Resources</h1>
+
+<ul>
+<li><a href="https://github.com/wagoodman/dive">Dive GitHub Page</a></li>
+<li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Best practices for writing Dockerfiles</a></li>
+</ul>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+      
+
+    <h4><a href="/post/a-curious-case-of-slow-docker-image-builds/">A curious case of slow Docker image builds</a></h4>
+    <h5>Investigating slow Docker image builds</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devicemapper"><kbd class="item-tag">devicemapper</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/overlay2"><kbd class="item-tag">overlay2</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">linux</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/generating-jvm-memory-dumps-from-jre/">Generating JVM memory dumps from JRE</a></h4>
+    <h5>August 28, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jvm"><kbd class="item-tag">jvm</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jre"><kbd class="item-tag">jre</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jattach"><kbd class="item-tag">jattach</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

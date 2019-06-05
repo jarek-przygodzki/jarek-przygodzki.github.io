@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>A curious case of slow Docker image builds</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">A curious case of slow Docker image builds</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+      
+
+    <h4><a href="/post/a-curious-case-of-slow-docker-image-builds/">A curious case of slow Docker image builds</a></h4>
+    <h5>Investigating slow Docker image builds</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devicemapper"><kbd class="item-tag">devicemapper</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/overlay2"><kbd class="item-tag">overlay2</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">linux</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<h1 id="investigating-slow-docker-image-builds">Investigating slow Docker image builds</h1>
+
+<p><em>A rather short but hopefully interesting troubleshooting story that happened recently.</em></p>
+
+<p>Lately, I was investigating a case of slow Docker image builds on CI server (Oracle Linux 7.5 with Docker devicemapper storage driver in direct-lvm mode). Each operation which altered layers (ADD, COPY, RUN) took up to 20 seconds - the larger the image, the longer.</p>
+
+<p>A typical way of dealing with with apparently stuck program is collecting thread stack traces. Or goroutines&rsquo; stacktraces in the case of the Go application.</p>
+
+<h2 id="dump-of-dockerd">Dump of dockerd</h2>
+
+<p>Docker deamon will write goroutines stacktraces to a file named <code>goroutine-stacks-&lt;datetime&gt;.log</code> after receving a SIGUSR1 signal (<a href="https://github.com/docker/docker-ce/blob/18.09/components/engine/daemon/debugtrap_unix.go#L16">engine/daemon/debugtrap_unix.go</a>)</p>
+
+<pre><code>pkill -SIGUSR1 dockerd
+</code></pre>
+
+<p>A quick analysis showed that almost all the time was spent in <code>NaiveDiffDriver.Diff</code>. Here it is one of the dumps</p>
+
+<script type="application/javascript" src="//gist.github.com/jarek-przygodzki/f342c6e9b688d0d119737e8be03d9351.js"></script>
+
+<h2 id="what-is-a-naivediffdriver-and-why-is-it-naive">What is a NaiveDiffDriver and why is it naive?</h2>
+
+<p>Docker image consist of immutable layers that are based on ordered root filesystem changes (and some metadata). Storage driver implementation handles merging of layers into a single mount point and provides a writable layer (called the “container layer”) on top of the underlying layers. All filesystem changes are written to this thin writable container layer. Each time a container is committed (manually or as part of building a Dockerfile), the storage driver needs to provide a list of modified files and directories relative to the base image to create a new layer. Some drivers keep track of these changes at run time and can generate that list easily but for drivers with no native handling for calculating changes Docker provides <code>NaiveDiffDriver</code>. This driver produces a list of changes between current container filesystem  and its parent layer by recursively traversing both directory trees and comparing file metadata. This operation is expensive for big images with many files and directories. See <a href="https://integratedcode.us/2016/08/30/storage-drivers-in-docker-a-deep-dive/">here</a> and <a href="https://portworx.com/lcfs-speed-up-docker-commit/">here</a> for in depth description of storage drivers in Docker.</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>The Device Mapper storage driver is good choice for running container in production on Red Hat and it&rsquo;s derivatives but not for building images because it&rsquo;s lack of native diff support. After some thought I choose <a href="https://docs.docker.com/storage/storagedriver/overlayfs-driver/">overlay2</a> as a replacement. It turned out that native diff support in overlay2 in incompatible with <a href="https://github.com/torvalds/linux/blob/v4.18/fs/overlayfs/Kconfig#L13">OVERLAY_FS_REDIRECT_DIR</a> option enabled in modern kernels: <a href="https://github.com/moby/moby/pull/34342">storage driver falls back to NaiveDiffDriver with a waring when it&rsquo;s detected</a>.</p>
+
+<pre><code># https://github.com/docker/docker-ce/blob/18.09/components/engine/daemon/graphdriver/overlay2/overlay.go#L287
+Not using native diff for overlay2, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled
+</code></pre>
+
+<p>The workaround I came up with is to disable _overlay_redirect<em>dir</em> option in overlay module</p>
+
+<pre><code>echo 'options overlay redirect_dir=off' &gt; /etc/modprobe.d/disable_overlay_redirect_dir.conf
+</code></pre>
+
+<p>which finally enables native diffs</p>
+
+<pre><code>Storage Driver: overlay2
+ Backing Filesystem: xfs
+ Supports d_type: true
+ Native Overlay Diff: true
+</code></pre>
+
+<p>No more time an CPU cycles lost computing layer diffs.</p>
+
+<h2 id="bonus">Bonus</h2>
+
+<p>I created <a href="https://github.com/jarek-przygodzki/docker-image-build-times">a few virtual machines</a> to confirm the source of the problem and to work on the solution.</p>
+
+<p>Nice think about Go is that it integrates pprof into the standard library and dockerd enables pprof/debug endpoints by default since 17.07.0-ce (2017-08-29) (earlier the profiler api was only available in debug mode: &ndash;debug/-D, <a href="https://github.com/moby/moby/pull/32453">Enable pprof/debug endpoints by default #32453</a>).</p>
+
+<p>Docker in flames</p>
+
+<pre><code>go-torch --file docker-build.svg --title=&quot;docker build&quot; \
+    --url http://localhost:2375
+</code></pre>
+
+<p><img src="https://github.com/jarek-przygodzki/docker-image-build-times/raw/master/assets/docker-build-devicemapper.png" alt="docker build flame graph" /></p>
+
+<p>Docker daemon is spending most of its time in <code>NaiveDiffDriver.Diff</code>.</p>
+
+<pre><code>go-torch --file docker-build-inversed.svg --inversed --title=&quot;docker build&quot; \
+    --url http://localhost:2375
+</code></pre>
+
+<p><img src="https://github.com/jarek-przygodzki/docker-image-build-times/raw/master/assets/docker-build-devicemapper-inversed.png" alt="docker build flame graph inversed" /></p>
+
+<p>&hellip; doing syscalls.</p>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+      
+
+    <h4><a href="/post/why-is-my-docker-image-so-large/">Why is my Docker image so large?</a></h4>
+    <h5>Troubleshooting issues with Docker image size</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">linux</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/generating-jvm-memory-dumps-from-jre/">Generating JVM memory dumps from JRE</a></h4>
+    <h5>August 28, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jvm"><kbd class="item-tag">jvm</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jre"><kbd class="item-tag">jre</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/jattach"><kbd class="item-tag">jattach</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">docker</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+

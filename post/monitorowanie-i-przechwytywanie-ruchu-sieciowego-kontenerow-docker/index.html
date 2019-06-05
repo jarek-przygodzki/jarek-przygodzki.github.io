@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+         
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #2196F3;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://jarek-przygodzki.github.io/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script> 
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.55.6" />
+        
+
+        
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body>
+         
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jarek.przygodzki&#43;public@gmail.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/jarek-przygodzki/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jarekprzygodzki/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jarekprzygodzki/"><i class="fa fa-linkedin"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://stackoverflow.com/users/293933/jarek-przyg%C3%B3dzki?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/">Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</a></h4>
+    <h5>March 12, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+
+<p>Ten wpis to krótki tutorial jak przechwycić ruch sieciowych z wybranych kontenerów Dockera, np. usług uruchomionych w ramach klastra Docker Swarm.</p>
+
+<p>Na początek minimum teorii. Docker używa <a href="https://en.wikipedia.org/wiki/Linux_namespaces">przestrzeni nazw</a> w celu zapewnienia izolacji procesów. Przestrzenie nazw (których od jądra 4.10 jest 7 rodzajów) są cechą jądra systemu Linux, która pozwala na izolację i wirtualizację zasobów systemowych. Funkcja przestrzeni nazw jest taka sama dla każdego typu: każdy proces jest powiązany z przestrzenią nazw danego rodzaju i może wykorzystywać zasoby powiązane z tą przestrzenią, oraz, w stosownych przypadkach, przestrzeniami nazw potomków. W kontekście ruchu sieciowego interesuje nas przestrzeń nazw dla sieci (network namespace).</p>
+
+<p>Sieciowe przestrzenie nazw wirtualizują stos sieciowy – umożliwiają odizolowanie całego podsystemu sieciowego dla grupy procesów. Każda przestrzeń nazw posiada prywatny zestaw adresów IP, własną tabelę routingu, listę gniazd, tabelę śledzenia połączeń, zaporę i inne zasoby związane z siecią.</p>
+
+<p>W celu przechwycenia ruchu sieciowego kontenera musimy uruchomić nasz program przechwytujący (tdpdump, tshark, etc.) w kontekście właściwej przestrzeni sieciowej docelowego kontenera. Jak to zrobić? Istnieją dwa typowe sposoby, w zależności od tego, czy chcemy skorzystać z oprogramowania dostępnego w systemie hosta czy też wolimy uruchomić stosowne narzędzia w kontenerze.</p>
+
+<h2 id="nsenter">nsenter</h2>
+
+<p>nsenter umożliwia uruchomienie procesu (domyślnie shella) we wskazanych przestrzeniach nazw docelowego procesu. W przypadku kontenerów Dockera typowy sposób postępowania polega na tym, że najpierw znajdujemy identyfikator kontenera, a następnie jego PID w przestrzeni procesów hosta.</p>
+
+<pre><code>mkdir ~/data
+CID=$(docker ps --format {{.Names}} | grep CONTAINER_NAME)
+PID=$(docker inspect --format {{.State.Pid}} $CID)
+nsenter --target $PID --net tcpdump -i any \
+        -w ~/data/$(hostname)-$(date +%Y-%m-%d_%H-%M).pcap
+</code></pre>
+
+<p>Przełącznik <code>-i any</code> powoduje przechwytywanie ruchu z wszystkich interfejsów sieciowych (za pomocą <code>tcpdump -D</code> lub `<code>ip addr show</code> można sprawdzić jakich dokładnie). Jeśli wersja nsenter dostępna w repozytorium dystrybucji nie jest odpowiednia można zainstalować aktualną w sposób opisany <a href="https://github.com/jpetazzo/nsenter">tutaj</a>.</p>
+
+<h2 id="uruchomienie-kontenera-z-narzędziami-w-przestrzeni-sieciowej-docelowego-kontenera">Uruchomienie kontenera z narzędziami w przestrzeni sieciowej docelowego kontenera</h2>
+
+<p>Uruchamiając kontener można użyć istniejącej przestrzeni sieciowej związanej z kontenerem który chcemy monitorować; stosując opcję <code>–net==container:&lt;name|id&gt;</code> można uruchomić procesy używając wirtualnego stosu sieciowego, który został już utworzony w innym kontenerze.
+Ta opcja jest wygodna, gdy nie możemy/nie chcemy instalować niczego w systemie hosta. Często używanym do tego celu kontenerem z mnóstwem dostępnych narzędzie jest <a href="https://hub.docker.com/r/nicolaka/netshoot/">nicolaka/netshoot</a></p>
+
+<pre><code>mkdir ~/data
+CID=$(docker ps --format {{.Names}} | grep CONTAINER_NAME)
+docker run --rm -it  -v ~/data:/data \
+        --net=container:$CID nicolaka/netshoot \
+        tcpdump -i any -w /data/$(hostname)-$(date +%Y-%m-%d_%H-%M).pcap
+</code></pre>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/">Install Ca Certificate for Docker Registry on Local Boot2docker Vm</a></h4>
+    <h5>May 23, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/boot2docker"><kbd class="item-tag">Boot2Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/ca"><kbd class="item-tag">CA</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/publishing-a-port-from-a-running-docker-container/">Publishing a port from a running Docker container</a></h4>
+    <h5>April 8, 2018</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/devops"><kbd class="item-tag">DevOps</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/">Running Linux graphical applications in Docker on Windows with Cygwin/X</a></h4>
+    <h5>July 11, 2017</h5>
+    
+    <a href="https://jarek-przygodzki.github.iotags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/windows"><kbd class="item-tag">Windows</kbd></a>
+    
+    <a href="https://jarek-przygodzki.github.iotags/cygwin/x"><kbd class="item-tag">CYGWIN/X</kbd></a>
+    
+
+</div>
+ 
+
+    
+
+    
+
+</main>
+
+        <footer>
+
+            <p class="copyright text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a></p>
+
+        </footer>
+       
+    </body>
+
+</html>
+
