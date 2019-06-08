@@ -17,9 +17,9 @@
       <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jarek-przygodzki.github.io/post/why-is-my-docker-image-so-large/</guid>
-      <description>Keeping Docker images as small as possible has a lot of practical benefits. But even when following best practices - use stripped-down base image - utilize multi-stage builds - don&amp;rsquo;t install what you don&amp;rsquo;t need - optimize build context - minimize number of layers
-some images end up being larger than they have to be inadvertently including files that are not necessary .
-How to troubleshoot issues with image size?</description>
+      <description>Keeping Docker images as small as possible has a lot of practical benefits. But even when following best practices
+ use stripped-down base image utilize multi-stage builds don&amp;rsquo;t install what you don&amp;rsquo;t need optimize build context minimize number of layers  some images end up being larger than they have to be inadvertently including files that are not necessary .
+How to troubleshoot issues with image size? Image filesystem changes are tracked in layers.</description>
     </item>
     
     <item>
