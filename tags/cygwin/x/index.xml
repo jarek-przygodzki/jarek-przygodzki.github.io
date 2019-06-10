@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CYGWIN/X on Jarek Przygódzki&#39;s Blog</title>
-    <link>https://jarek-przygodzki.github.io/tags/cygwin/x/</link>
+    <link>https://jarekprzygodzki.dev/tags/cygwin/x/</link>
     <description>Recent content in CYGWIN/X on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 11 Jul 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jarek-przygodzki.github.io/tags/cygwin/x/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jarekprzygodzki.dev/tags/cygwin/x/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Running Linux graphical applications in Docker on Windows with Cygwin/X</title>
-      <link>https://jarek-przygodzki.github.io/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/</link>
+      <link>https://jarekprzygodzki.dev/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/</link>
       <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/</guid>
+      <guid>https://jarekprzygodzki.dev/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/</guid>
       <description>Install Babun Cygwin is a great tool, but not the easiest to install. Babun consists of a pre-configured Cygwin that does not interfere with existing Cygwin installation.
 Download the dist file from http://babun.github.io, unzip it and run the install.bat script. After a few minutes the application will be installed to the %USERPROFILE%\.babun directory. You can use the /target (or /t) option to install babun to a custom directory.
 Install Cygwin/X Run pact from babun shell (pact is a babun package manager )</description>

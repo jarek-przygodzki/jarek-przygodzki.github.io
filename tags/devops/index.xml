@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DevOps on Jarek Przygódzki&#39;s Blog</title>
-    <link>https://jarek-przygodzki.github.io/tags/devops/</link>
+    <link>https://jarekprzygodzki.dev/tags/devops/</link>
     <description>Recent content in DevOps on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 23 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jarek-przygodzki.github.io/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jarekprzygodzki.dev/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Install Ca Certificate for Docker Registry on Local Boot2docker Vm</title>
-      <link>https://jarek-przygodzki.github.io/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/</link>
+      <link>https://jarekprzygodzki.dev/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/</link>
       <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/</guid>
+      <guid>https://jarekprzygodzki.dev/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/</guid>
       <description>Annoyingly often internal Docker registries are secured with certificates signed by company&amp;rsquo;s own PKI or enterprise IT does a MitM to replace all HTTPS certs.
 Commonly, company&amp;rsquo;s root CA certificate is installed by IT on developers machines and servers, but not on VMs run by developers on their own machines. When using Docker with local VMs like boot2docker, do we need to install the company root CA certificate on the VM to avoid x509: certificate signed by unknown authority errors.</description>
     </item>
     
     <item>
       <title>Publishing a port from a running Docker container</title>
-      <link>https://jarek-przygodzki.github.io/post/publishing-a-port-from-a-running-docker-container/</link>
+      <link>https://jarekprzygodzki.dev/post/publishing-a-port-from-a-running-docker-container/</link>
       <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/publishing-a-port-from-a-running-docker-container/</guid>
+      <guid>https://jarekprzygodzki.dev/post/publishing-a-port-from-a-running-docker-container/</guid>
       <description>It’s not obvious, but it’s possible to publish an additional port from a running Docker container.
 Note: Assuming container is attached to user-defined bridge network or default bridge network. Publishing ports doesn’t make sense with MacVLAN or IPVLAN since then every container has a uniquely routable IP address and can offer service on any port.
 What can we do to make container port externally accessible? One possibile solution is to exploit the fact that communication between containers inside the same bridge network is switched at layer 2 and they can communiate with each other without any restrictions (unless ICC is disabled, that is).</description>
@@ -34,10 +34,10 @@ What can we do to make container port externally accessible? One possibile solut
     
     <item>
       <title>Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</title>
-      <link>https://jarek-przygodzki.github.io/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</link>
+      <link>https://jarekprzygodzki.dev/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</link>
       <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</guid>
+      <guid>https://jarekprzygodzki.dev/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</guid>
       <description>Ten wpis to krótki tutorial jak przechwycić ruch sieciowych z wybranych kontenerów Dockera, np. usług uruchomionych w ramach klastra Docker Swarm.
 Na początek minimum teorii. Docker używa przestrzeni nazw w celu zapewnienia izolacji procesów. Przestrzenie nazw (których od jądra 4.10 jest 7 rodzajów) są cechą jądra systemu Linux, która pozwala na izolację i wirtualizację zasobów systemowych. Funkcja przestrzeni nazw jest taka sama dla każdego typu: każdy proces jest powiązany z przestrzenią nazw danego rodzaju i może wykorzystywać zasoby powiązane z tą przestrzenią, oraz, w stosownych przypadkach, przestrzeniami nazw potomków.</description>
     </item>

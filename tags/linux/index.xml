@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Jarek Przygódzki&#39;s Blog</title>
-    <link>https://jarek-przygodzki.github.io/tags/linux/</link>
+    <link>https://jarekprzygodzki.dev/tags/linux/</link>
     <description>Recent content in Linux on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 May 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jarek-przygodzki.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jarekprzygodzki.dev/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Why is my Docker image so large?</title>
-      <link>https://jarek-przygodzki.github.io/post/why-is-my-docker-image-so-large/</link>
+      <link>https://jarekprzygodzki.dev/post/why-is-my-docker-image-so-large/</link>
       <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/why-is-my-docker-image-so-large/</guid>
+      <guid>https://jarekprzygodzki.dev/post/why-is-my-docker-image-so-large/</guid>
       <description>Keeping Docker images as small as possible has a lot of practical benefits. But even when following best practices
  use stripped-down base image utilize multi-stage builds don&amp;rsquo;t install what you don&amp;rsquo;t need optimize build context minimize number of layers  some images end up being larger than they have to be inadvertently including files that are not necessary .
 How to troubleshoot issues with image size? Image filesystem changes are tracked in layers.</description>
@@ -24,10 +24,10 @@ How to troubleshoot issues with image size? Image filesystem changes are tracked
     
     <item>
       <title>A curious case of slow Docker image builds</title>
-      <link>https://jarek-przygodzki.github.io/post/a-curious-case-of-slow-docker-image-builds/</link>
+      <link>https://jarekprzygodzki.dev/post/a-curious-case-of-slow-docker-image-builds/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/a-curious-case-of-slow-docker-image-builds/</guid>
+      <guid>https://jarekprzygodzki.dev/post/a-curious-case-of-slow-docker-image-builds/</guid>
       <description>Investigating slow Docker image builds A rather short but hopefully interesting troubleshooting story that happened recently.
 Lately, I was investigating a case of slow Docker image builds on CI server (Oracle Linux 7.5 with Docker devicemapper storage driver in direct-lvm mode). Each operation which altered layers (ADD, COPY, RUN) took up to 20 seconds - the larger the image, the longer.
 A typical way of dealing with with apparently stuck program is collecting thread stack traces.</description>
@@ -35,10 +35,10 @@ A typical way of dealing with with apparently stuck program is collecting thread
     
     <item>
       <title>Publishing a port from a running Docker container</title>
-      <link>https://jarek-przygodzki.github.io/post/publishing-a-port-from-a-running-docker-container/</link>
+      <link>https://jarekprzygodzki.dev/post/publishing-a-port-from-a-running-docker-container/</link>
       <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/publishing-a-port-from-a-running-docker-container/</guid>
+      <guid>https://jarekprzygodzki.dev/post/publishing-a-port-from-a-running-docker-container/</guid>
       <description>It’s not obvious, but it’s possible to publish an additional port from a running Docker container.
 Note: Assuming container is attached to user-defined bridge network or default bridge network. Publishing ports doesn’t make sense with MacVLAN or IPVLAN since then every container has a uniquely routable IP address and can offer service on any port.
 What can we do to make container port externally accessible? One possibile solution is to exploit the fact that communication between containers inside the same bridge network is switched at layer 2 and they can communiate with each other without any restrictions (unless ICC is disabled, that is).</description>
@@ -46,20 +46,20 @@ What can we do to make container port externally accessible? One possibile solut
     
     <item>
       <title>Monitorowanie i przechwytywanie ruchu sieciowego kontenerów Dockera</title>
-      <link>https://jarek-przygodzki.github.io/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</link>
+      <link>https://jarekprzygodzki.dev/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</link>
       <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</guid>
+      <guid>https://jarekprzygodzki.dev/post/monitorowanie-i-przechwytywanie-ruchu-sieciowego-kontenerow-docker/</guid>
       <description>Ten wpis to krótki tutorial jak przechwycić ruch sieciowych z wybranych kontenerów Dockera, np. usług uruchomionych w ramach klastra Docker Swarm.
 Na początek minimum teorii. Docker używa przestrzeni nazw w celu zapewnienia izolacji procesów. Przestrzenie nazw (których od jądra 4.10 jest 7 rodzajów) są cechą jądra systemu Linux, która pozwala na izolację i wirtualizację zasobów systemowych. Funkcja przestrzeni nazw jest taka sama dla każdego typu: każdy proces jest powiązany z przestrzenią nazw danego rodzaju i może wykorzystywać zasoby powiązane z tą przestrzenią, oraz, w stosownych przypadkach, przestrzeniami nazw potomków.</description>
     </item>
     
     <item>
       <title>JVM in Docker and PTRACE_ATTACH</title>
-      <link>https://jarek-przygodzki.github.io/post/jvm-in-docker-and-ptrace_attach/</link>
+      <link>https://jarekprzygodzki.dev/post/jvm-in-docker-and-ptrace_attach/</link>
       <pubDate>Mon, 19 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/jvm-in-docker-and-ptrace_attach/</guid>
+      <guid>https://jarekprzygodzki.dev/post/jvm-in-docker-and-ptrace_attach/</guid>
       <description>Docker nowadays (since 1.10, the original pull request is here docker/docker/#17989) adds some security to running containers by wrapping them in both AppArmor (or presumably SELinux on RedHat systems) and seccomp eBPF based syscall filters (here’s a nice article about it). And ptrace is disabled in the default seccomp profile.
 $ docker run alpine sh -c &#39;apk add -U strace &amp;amp;&amp;amp; strace echo&#39; fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/main/x86_64/APKINDEX.tar.gz fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/community/x86_64/APKINDEX.tar.gz (1/1) Installing strace (4.</description>
     </item>

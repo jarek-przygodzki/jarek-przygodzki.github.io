@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>overlay2 on Jarek Przygódzki&#39;s Blog</title>
-    <link>https://jarek-przygodzki.github.io/tags/overlay2/</link>
+    <link>https://jarekprzygodzki.dev/tags/overlay2/</link>
     <description>Recent content in overlay2 on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 31 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://jarek-przygodzki.github.io/tags/overlay2/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jarekprzygodzki.dev/tags/overlay2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A curious case of slow Docker image builds</title>
-      <link>https://jarek-przygodzki.github.io/post/a-curious-case-of-slow-docker-image-builds/</link>
+      <link>https://jarekprzygodzki.dev/post/a-curious-case-of-slow-docker-image-builds/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://jarek-przygodzki.github.io/post/a-curious-case-of-slow-docker-image-builds/</guid>
+      <guid>https://jarekprzygodzki.dev/post/a-curious-case-of-slow-docker-image-builds/</guid>
       <description>Investigating slow Docker image builds A rather short but hopefully interesting troubleshooting story that happened recently.
 Lately, I was investigating a case of slow Docker image builds on CI server (Oracle Linux 7.5 with Docker devicemapper storage driver in direct-lvm mode). Each operation which altered layers (ADD, COPY, RUN) took up to 20 seconds - the larger the image, the longer.
 A typical way of dealing with with apparently stuck program is collecting thread stack traces.</description>
