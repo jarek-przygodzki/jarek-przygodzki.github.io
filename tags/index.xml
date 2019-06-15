@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jarekprzygodzki.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://jarekprzygodzki.dev/tags/devops/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://jarekprzygodzki.dev/tags/linux/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://jarekprzygodzki.dev/tags/windows/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/windows/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Docker</title>
@@ -17,15 +44,6 @@
       <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jarekprzygodzki.dev/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://jarekprzygodzki.dev/tags/linux/</link>
-      <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -93,15 +111,6 @@
     </item>
     
     <item>
-      <title>DevOps</title>
-      <link>https://jarekprzygodzki.dev/tags/devops/</link>
-      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>OpenJDK</title>
       <link>https://jarekprzygodzki.dev/tags/openjdk/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
@@ -116,15 +125,6 @@
       <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jarekprzygodzki.dev/tags/cygwin/x/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Windows</title>
-      <link>https://jarekprzygodzki.dev/tags/windows/</link>
-      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/windows/</guid>
       <description></description>
     </item>
     
