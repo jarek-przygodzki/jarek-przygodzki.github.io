@@ -48,6 +48,15 @@
     </item>
     
     <item>
+      <title>Linux</title>
+      <link>https://jarekprzygodzki.dev/tags/linux/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Windows</title>
       <link>https://jarekprzygodzki.dev/tags/windows/</link>
       <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
@@ -57,16 +66,7 @@
     </item>
     
     <item>
-      <title>linux</title>
-      <link>https://jarekprzygodzki.dev/tags/linux/</link>
-      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
+      <title>Docker</title>
       <link>https://jarekprzygodzki.dev/tags/docker/</link>
       <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
       
