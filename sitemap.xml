@@ -3,13 +3,59 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jarekprzygodzki.dev/post/converting-old-java-future-to-completablefuture-monadic-goodness/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/post/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/concurrency/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/java/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/parallelism/</loc>
+    <lastmod>2019-06-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jarekprzygodzki.dev/tags/devops/</loc>
     <lastmod>2019-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://jarekprzygodzki.dev/</loc>
+    <loc>https://jarekprzygodzki.dev/post/monitor-new-process-creation/</loc>
+    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/windows/</loc>
     <lastmod>2019-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -21,37 +67,14 @@
   </url>
   
   <url>
-    <loc>https://jarekprzygodzki.dev/post/monitor-new-process-creation/</loc>
-    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jarekprzygodzki.dev/post/</loc>
-    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jarekprzygodzki.dev/tags/</loc>
-    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jarekprzygodzki.dev/tags/windows/</loc>
-    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://jarekprzygodzki.dev/post/why-is-my-docker-image-so-large/</loc>
+    <lastmod>2019-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://jarekprzygodzki.dev/tags/docker/</loc>
     <lastmod>2019-05-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jarekprzygodzki.dev/post/why-is-my-docker-image-so-large/</loc>
-    <lastmod>2019-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
