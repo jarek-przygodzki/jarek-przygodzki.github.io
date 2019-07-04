@@ -50,12 +50,6 @@
   </url>
   
   <url>
-    <loc>https://jarekprzygodzki.dev/tags/linux/</loc>
-    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://jarekprzygodzki.dev/post/monitor-new-process-creation/</loc>
     <lastmod>2019-06-15T00:00:00+00:00</lastmod>
   </url>
@@ -67,14 +61,20 @@
   </url>
   
   <url>
-    <loc>https://jarekprzygodzki.dev/tags/docker/</loc>
-    <lastmod>2019-05-12T00:00:00+00:00</lastmod>
+    <loc>https://jarekprzygodzki.dev/tags/linux/</loc>
+    <lastmod>2019-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jarekprzygodzki.dev/post/why-is-my-docker-image-so-large/</loc>
     <lastmod>2019-05-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/docker/</loc>
+    <lastmod>2019-05-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -100,12 +100,6 @@
   </url>
   
   <url>
-    <loc>https://jarekprzygodzki.dev/tags/jvm/</loc>
-    <lastmod>2018-08-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://jarekprzygodzki.dev/tags/jattach/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -113,6 +107,12 @@
   
   <url>
     <loc>https://jarekprzygodzki.dev/tags/jre/</loc>
+    <lastmod>2018-08-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jarekprzygodzki.dev/tags/jvm/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

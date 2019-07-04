@@ -171,18 +171,19 @@ sudo forkstat -e exec,exit
 Time     Event   PID Info   Duration Process
 21:21:30 exec   3384                 sleep 10
 21:21:40 exit   3384      0  10.003s sleep 10</code></pre></div>
-Requires root privilege (CAP_NET_ADMIN capability).</p>
+Requires root privilege (or CAP_NET_ADMIN capability). Developed by <a href="https://twitter.com/colinianking">Colin Ian King</a>.</p>
 
 <h3 id="execsnoop-ebpf">execsnoop  (eBPF)</h3>
 
 <p>execsnoop traces process execution. It works by dynamic tracing an execve kernel function.
 See the bcc <a href="https://github.com/iovisor/bcc/blob/master/INSTALL.md">installation instructions</a> for your OS. On Ubuntu, versions of bcc are available in the standard Ubuntu repository as of Ubuntu Bionic (18.04). The tools are installed in <code>/sbin</code> (<code>/usr/sbin</code> in Ubuntu 18.04) with a -bpfcc extension.</p>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">sudo apt-get install bpfcc-tools linux-headers-$(uname -r)
 
 sudo execsnoop-bpfcc 
 PCOMM            PID    PPID   RET ARGS
 sleep            5380   5379     0 /usr/bin/sleep 10</code></pre></div>
+Originally created by <a href="http://www.brendangregg.com/">Brendan Gregg</a>.</p>
 
 <h3 id="execsnoop">execsnoop</h3>
 
@@ -197,13 +198,22 @@ Does not work on many newer systems, try execsnoop (eBPF) first.</p>
 
 <h3 id="process-monitor">Process Monitor</h3>
 
-<p><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon"><em>Process Monitor</em></a>, part of <em>Sysinternals Suite</em> is an advanced monitoring tool for Windows that can be used to keep track of process creation events.  Can be downloaded as standalone executable from project&rsquo;s website or installed with chocolatey package manager: <code>choco install procmon</code>. Also part of <a href="https://chocolatey.org/packages/sysinternals">Sysinternals Suite</a> package.</p>
+<p><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon"><em>Process Monitor</em></a>, part of <em>Sysinternals Suite</em> is an advanced monitoring tool for Windows that can be used to keep track of process creation events.  Can be downloaded as standalone executable from project&rsquo;s website or installed with chocolatey package manager: <code>choco install procmon</code>. Also part of <a href="https://chocolatey.org/packages/sysinternals">Sysinternals Suite</a> package. Primarily created by <a href="https://en.wikipedia.org/wiki/Mark_Russinovich">Mark Russinovich</a> and Bryce Cogswell</p>
 
-<p><img src="/post/images/procmon-process-create-operation.png" alt="Process Monitor Process " /></p>
+<p><img src="/post/images/procmon-process-create-operation.png" alt="Process Monitor " /></p>
+
+<h3 id="procmonx">ProcMonX</h3>
+
+<p><a href="https://github.com/zodiacon/ProcMonX">Process Monitor X</a> (ProcMonX) is a alternative to ProcMon created by <a href="https://twitter.com/zodiacon">Pavel Yosifovich</a>
+. ProcMonX provides information on similar activities to ProcMon, but adds more events, such as networking, ALPC and memory. Can be downloaded as standalone executable <a href="https://github.com/zodiacon/ProcMonX/releases/download/0.21-beta/ProcMonX.0.21.zip">from here</a>.</p>
+
+<p><img src="/post/images/procmonx-process-create-operation.png" alt="Process Monitor X" /></p>
+
+<p><img src="/post/images/procmonx-process-create-operation-log.png" alt="Process Monitor X" /></p>
 
 <h3 id="powershell">PowerShell</h3>
 
-<p>Microsoft Scripting Guy, Ed Wilson shown that PowerShell can be used to monitor process creation.</p>
+<p>Microsoft Scripting Guy, <a href="https://edwilson.com/">Ed Wilson</a> shown that PowerShell can be used to monitor process creation.</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Register-CimIndicationEvent `
     -ClassName Win32_ProcessStartTrace `
@@ -228,6 +238,24 @@ get-event | Remove-Event
 Get-EventSubscriber | Unregister-Event</code></pre></div>
 
 <p>See <a href="https://devblogs.microsoft.com/scripting/use-powershell-to-monitor-for-process-startup/">this</a> article for details.</p>
+
+<h2 id="macos">macOS</h2>
+
+<h3 id="dtrace">dtrace</h3>
+
+<p><code>sudo newproc.d</code> will trace all new process with command line args. It won&rsquo;t work if <a href="https://support.apple.com/en-us/HT204899">System Integrity Protection</a> is on.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">sudo newproc.d
+dtrace: system integrity protection is on, some features will not be available
+
+dtrace: failed to compile script /usr/bin/newproc.d: line 22: probe description proc:::exec-success does not match any probes. System Integrity Protection is on</code></pre></div>
+
+<p>El Capitan introduced a security mechanism called System Integrity Protection to help ensure that no malicious parties can modify the operating system and it severely limits what DTrace can do.</p>
+
+<p>SIP has to be partially diabled</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">csrutil enable --without dtrace # disable dtrace restrictions only</code></pre></div>
+Reboot and DTrace starts to work.</p>
 
 <h2 id="how-do-these-tools-work">How do these tools work</h2>
 
@@ -294,7 +322,11 @@ That&rsquo;s it! The only problem is that <a href="https://github.com/torvalds/l
 
 <h3 id="process-monitor-1">Process Monitor</h3>
 
-<p><em>Process Monitor</em> installs a kernel driver on startup which does the system-wide monitoring of userland processes. Driver API provides the kernel routine <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/content/ntddk/nf-ntddk-pssetcreateprocessnotifyroutine"><code>PsSetCreateProcessNotifyRoutine</code></a>/<a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/content/ntddk/nf-ntddk-pssetcreateprocessnotifyroutineex"><code>PsSetCreateProcessNotifyRoutineEx</code></a> to allow software to monitor process creation and termination events in the Windows kernel. No code here, but <a href="https://github.com/microsoft/Windows-driver-samples/blob/41c29cb92feff490270b4ce31f67d7baddecc457/general/obcallback/README.md">this</a> example from  Windows Driver Kit (WDK) 10 is close to what we want.</p>
+<p><em>Process Monitor</em>  (ProcMon) installs a kernel driver on startup which does the system-wide monitoring of userland processes. Driver API provides the kernel routine <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/content/ntddk/nf-ntddk-pssetcreateprocessnotifyroutine"><code>PsSetCreateProcessNotifyRoutine</code></a>/<a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/content/ntddk/nf-ntddk-pssetcreateprocessnotifyroutineex"><code>PsSetCreateProcessNotifyRoutineEx</code></a> to allow software to monitor process creation and termination events in the Windows kernel. No code here, but <a href="https://github.com/microsoft/Windows-driver-samples/blob/41c29cb92feff490270b4ce31f67d7baddecc457/general/obcallback/README.md">this</a> example from  Windows Driver Kit (WDK) 10 is close to what we want.</p>
+
+<h3 id="procmonx-1">ProcMonX</h3>
+
+<p>ProcMonX uses <a href="https://docs.microsoft.com/pl-pl/windows/win32/etw/event-tracing-portal">Event Tracing for Windows (ETW)</a> (a diagnostics and logging mechanism that existed since Windows 2000) through <a href="https://github.com/microsoft/perfview/blob/master/documentation/TraceEvent/TraceEventLibrary.md">Microsoft.Diagnostics.Tracing.TraceEvent</a> library.</p>
 
 <h3 id="powershell-1">PowerShell</h3>
 
@@ -345,6 +377,12 @@ That&rsquo;s it! The only problem is that <a href="https://github.com/torvalds/l
         <span style="color:#a6e22e">Console</span>.<span style="color:#a6e22e">ReadKey</span>();
     }
 }</code></pre></div>
+
+<h2 id="macos-1">macOS</h2>
+
+<h3 id="dtrace-1">dtrace</h3>
+
+<p>DTrace is as dynamic tracing framework for Solaris, macOS and FreeBSD. You can learn more about <a href="http://www.brendangregg.com/dtrace.html">DTrace Tools</a> and read newproc.d source code <a href="https://opensource.apple.com/source/dtrace/dtrace-168/DTTk/Proc/newproc.d.auto.html">here</a>.</p>
 </div>
 
     

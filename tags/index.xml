@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>https://jarekprzygodzki.dev/tags/linux/</link>
-      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Windows</title>
       <link>https://jarekprzygodzki.dev/tags/windows/</link>
       <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
@@ -66,7 +57,16 @@
     </item>
     
     <item>
-      <title>Docker</title>
+      <title>linux</title>
+      <link>https://jarekprzygodzki.dev/tags/linux/</link>
+      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
       <link>https://jarekprzygodzki.dev/tags/docker/</link>
       <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
       
@@ -93,15 +93,6 @@
     </item>
     
     <item>
-      <title>JVM</title>
-      <link>https://jarekprzygodzki.dev/tags/jvm/</link>
-      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/jvm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>jattach</title>
       <link>https://jarekprzygodzki.dev/tags/jattach/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
@@ -116,6 +107,15 @@
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jarekprzygodzki.dev/tags/jre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jvm</title>
+      <link>https://jarekprzygodzki.dev/tags/jvm/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/jvm/</guid>
       <description></description>
     </item>
     
