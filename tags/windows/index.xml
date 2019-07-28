@@ -6,10 +6,21 @@
     <description>Recent content in Windows on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jarekprzygodzki.dev/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notes and Thoughts on Strace for Windows</title>
+      <link>https://jarekprzygodzki.dev/post/notes-and-thoughts-on-strace-for-windows/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/post/notes-and-thoughts-on-strace-for-windows/</guid>
+      <description>strace and it&amp;rsquo;s cousin ltrace are well known and invaluable diagnostic and debugging tools for Linux. Here are articles explaining how they work: How does strace work?, How does ltrace work?. But what about Windows?
+There are tools for Windows that provide a similar functionality to strace/ltrace on Linux. From all of the following tools, drstrace, Nektra SpyStudio and Rohitab API Monitor are most realiable and useful.
+Strace for Windows from Dr.</description>
+    </item>
     
     <item>
       <title>Monitoring new process creation</title>

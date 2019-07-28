@@ -4,7 +4,7 @@
          
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Windows</title>
+        <title>Notes and Thoughts on Strace for Windows</title>
         
         <style>
 
@@ -61,9 +61,6 @@
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
  <meta name="generator" content="Hugo 0.55.6" />
         
-        <link href="/tags/windows/index.xml" rel="alternate" type="application/rss&#43;xml" title="Jarek Przygódzki&#39;s Blog" />
-        <link href="/tags/windows/index.xml" rel="feed" type="application/rss&#43;xml" title="Jarek Przygódzki&#39;s Blog" />
-        
 
         
     </head>
@@ -83,7 +80,7 @@
 
                 <div class="navbar-header">
 
-                    <a class="navbar-brand visible-xs" href="#">Windows</a>
+                    <a class="navbar-brand visible-xs" href="#">Notes and Thoughts on Strace for Windows</a>
 
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
@@ -130,9 +127,7 @@
 
 <main>
 
-    <h2>Windows</h2>
-
-     <div class="item">
+    <div class="item">
 
     
     
@@ -154,7 +149,132 @@
     
 
 </div>
-  <div class="item">
+
+
+    <br> <div class="text-justify">
+
+<p><em>strace</em> and it&rsquo;s cousin <em>ltrace</em> are well known and invaluable diagnostic and debugging tools for Linux. Here are articles explaining how they work: <a href="https://blog.packagecloud.io/eng/2016/02/29/how-does-strace-work/">How does strace work?</a>, <a href="https://blog.packagecloud.io/eng/2016/03/14/how-does-ltrace-work/">How does ltrace work?</a>. But what about Windows?</p>
+
+<p>There are tools for Windows that provide a similar functionality to strace/ltrace on Linux. From all of the following tools, <em>drstrace</em>, <em>Nektra SpyStudio</em> and <em>Rohitab API Monitor</em> are most realiable and useful.</p>
+
+<h2 id="strace-for-windows-from-dr-memory">Strace for Windows from Dr. Memory</h2>
+
+<p>drstrace works by using the Dr. Syscall System Call Monitoring Extension</p>
+
+<p>Pros:</p>
+
+<ul>
+<li>Source code available under the LGPL license (except certain portions) at <a href="https://github.com/DynamoRIO/drmemory">github</a></li>
+</ul>
+
+<p>Home page: <a href="http://drmemory.org/strace_for_windows.html">System Call Tracer (&ldquo;strace&rdquo;) for Windows</a></p>
+
+<h2 id="nektra-spystudio">Nektra SpyStudio</h2>
+
+<p>Pros</p>
+
+<ul>
+<li>Free for any use</li>
+<li>Does not require installation (just unzip and use it)</li>
+<li>32-bit/64-bit</li>
+</ul>
+
+<p>Cons</p>
+
+<ul>
+<li>No source code</li>
+</ul>
+
+<p>Home page: <a href="https://www.nektra.com/products/spystudio-api-monitor/">SpyStudio API Monitor</a></p>
+
+<h2 id="windows-api-monitor-from-rohitab">Windows API Monitor from rohitab</h2>
+
+<p>Pros</p>
+
+<ul>
+<li>Freeware</li>
+<li>32-bit/64-bit</li>
+</ul>
+
+<p>Cons</p>
+
+<ul>
+<li>No source code</li>
+</ul>
+
+<p>Home page:  <a href="http://www.rohitab.com/apimonitor">API Monitor</a></p>
+
+<h2 id="stracent-from-intellectualheaven">StraceNT from IntellectualHeaven</h2>
+
+<p>StraceNT works by using Import Address Table (IAT) patching . Implementation is explained in <a href="http://intellectualheaven.com/Articles/StraceNT.pdf">this</a> article along with others system call hooking techniques.</p>
+
+<p>Pros</p>
+
+<ul>
+<li>Source code available under the BSD license at <a href="https://github.com/intellectualheaven/stracent">github</a></li>
+</ul>
+
+<p>Cons</p>
+
+<ul>
+<li><a href="https://github.com/l0n3c0d3r/stracent/issues/2">made for x86 only (32-bit)</a></li>
+</ul>
+
+<p>Home page: <a href="http://intellectualheaven.com/default.asp?BH=StraceNT">StraceNT - A System Call Tracer for Windows</a></p>
+
+<h2 id="nttrace">NtTrace</h2>
+
+<p>NtTrace can be used to execute a program or to attach to an existing process by PID or, using the -a option, by name. It works by using the Windows debug interface to place breakpoints in NtDll</p>
+
+<p>Pros</p>
+
+<ul>
+<li>Actively developed</li>
+<li>Source code available under the BSD license at <a href="https://github.com/rogerorr/NtTrace">github</a></li>
+<li>32-bit/64-bit</li>
+<li>Can show stack trace</li>
+</ul>
+
+<p>Cons</p>
+
+<ul>
+<li>Slow</li>
+<li>No prebuilt binaries</li>
+</ul>
+
+<p>Home page: <a href="http://rogerorr.github.io/NtTrace/">NtTrace - Native API tracing for Windows</a></p>
+
+<h1 id="legacy-projects">Legacy projects</h1>
+
+<p>Does not work on new Windows versions.</p>
+
+<h2 id="api-monitor">API Monitor</h2>
+
+<p>Display Win32 API calls made by applications.</p>
+
+<p>Cons</p>
+
+<ul>
+<li>Not free software.</li>
+<li>No source code</li>
+<li>32-bit only</li>
+</ul>
+
+<p>Home page: <a href="https://www.apimonitor.com/">Win32 API Monitor</a></p>
+
+<h2 id="strace-from-bindview">strace from BindView</h2>
+
+<p>Can be found on the <a href="http://web.archive.org/web/20070915180821/http://www.bindview.com/Services/razor/Utilities/Windows/strace_readme.cfm">archive.org</a> web site. It uses the system call hooking technique described by <a href="https://dl.acm.org/citation.cfm?id=554827">Undocumented Windows NT</a>. Source code is provided under the terms of BindView&rsquo;s Open Source license.</p>
+</div>
+
+    
+    
+
+    
+
+        <h4 class="page-header">Related</h4>
+
+         <div class="item">
 
     
     
@@ -183,22 +303,46 @@
     
     
 
-    <h4><a href="/post/running-linux-graphical-applications-in-docker-on-windows-with-cygwinx/">Running Linux graphical applications in Docker on Windows with Cygwin/X</a></h4>
-    <h5>July 11, 2017</h5>
+    <h4><a href="/post/install-ca-certificate-for-docker-registry-on-local-boot2docker-vm/">Install Ca Certificate for Docker Registry on Local Boot2docker Vm</a></h4>
+    <h5>May 23, 2018</h5>
     
     <a href="https://jarekprzygodzki.dev/tags/docker"><kbd class="item-tag">Docker</kbd></a>
     
-    <a href="https://jarekprzygodzki.dev/tags/windows"><kbd class="item-tag">Windows</kbd></a>
+    <a href="https://jarekprzygodzki.dev/tags/devops"><kbd class="item-tag">DevOps</kbd></a>
     
-    <a href="https://jarekprzygodzki.dev/tags/cygwin/x"><kbd class="item-tag">CYGWIN/X</kbd></a>
+    <a href="https://jarekprzygodzki.dev/tags/boot2docker"><kbd class="item-tag">Boot2Docker</kbd></a>
+    
+    <a href="https://jarekprzygodzki.dev/tags/ca"><kbd class="item-tag">CA</kbd></a>
+    
+
+</div>
+  <div class="item">
+
+    
+    
+    
+
+    
+    
+
+    <h4><a href="/post/publishing-a-port-from-a-running-docker-container/">Publishing a port from a running Docker container</a></h4>
+    <h5>April 8, 2018</h5>
+    
+    <a href="https://jarekprzygodzki.dev/tags/docker"><kbd class="item-tag">Docker</kbd></a>
+    
+    <a href="https://jarekprzygodzki.dev/tags/linux"><kbd class="item-tag">Linux</kbd></a>
+    
+    <a href="https://jarekprzygodzki.dev/tags/devops"><kbd class="item-tag">DevOps</kbd></a>
     
 
 </div>
  
 
+    
+
+    
+
 </main>
-
-
 
         <footer>
 

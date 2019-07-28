@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Jarek Przygódzki&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jarekprzygodzki.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DevOps</title>
+      <link>https://jarekprzygodzki.dev/tags/devops/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internals</title>
+      <link>https://jarekprzygodzki.dev/tags/internals/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/internals/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://jarekprzygodzki.dev/tags/troubleshooting/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/troubleshooting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://jarekprzygodzki.dev/tags/windows/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jarekprzygodzki.dev/tags/windows/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>concurrency</title>
@@ -35,24 +71,6 @@
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://jarekprzygodzki.dev/tags/parallelism/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DevOps</title>
-      <link>https://jarekprzygodzki.dev/tags/devops/</link>
-      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/devops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Windows</title>
-      <link>https://jarekprzygodzki.dev/tags/windows/</link>
-      <pubDate>Sat, 15 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jarekprzygodzki.dev/tags/windows/</guid>
       <description></description>
     </item>
     
